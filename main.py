@@ -15,7 +15,9 @@ def obtener_categoria(archivo):
     return "Otros"
 
 
-print(obtener_categoria(Path("FOTO.JPG")))
-print(obtener_categoria(Path("peli.mkv")))
-print(obtener_categoria(Path("cosa.xyz")))
+carpeta = Path("prueba")
+
+for elemento in carpeta.iterdir():
+    if elemento.is_file():
+        print(elemento.name + " --> " + obtener_categoria(elemento))
 
