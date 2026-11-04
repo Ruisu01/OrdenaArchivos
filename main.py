@@ -1,13 +1,57 @@
+import argparse
 from pathlib import Path
 import shutil
-from sys import path
 
 categorias = {
-    "Imagenes": [".jpg", ".png", ".gif"],
-    "Videos": [".mp4", ".mkv", ".avi"],
-    "Archivos": [".pdf", ".txt", ".rtf"],
-    "Roms": [".iso", ".ciso", ".nes"],
-    "Otros": []
+      "Imagenes": [".jpg", ".jpeg", ".png",
+    ".gif", ".webp", ".bmp",
+    ".tiff", ".svg", ".ico"
+  ],
+
+      "Video": [".mp4", ".mkv", ".avi",
+    ".mov", ".wmv", ".flv",
+    ".webm", ".mpeg", ".3gp"
+  ],
+
+    "Documentos": [".pdf", ".doc", ".docx",
+        ".odt", ".rtf", ".txt",
+        ".epub", ".md"
+    ],
+
+    "Audio": [".mp3", ".wav", ".flac",
+        ".ogg", ".aac", ".m4a",
+        ".wma", ".mid"
+    ],
+
+    "Otros": [],
+
+    "Hojas_calculo": [".xls", ".xlsx",
+        ".ods", ".csv"
+    ],
+
+    "Ejecutables": [".exe", ".msi", ".bat",
+    ".cmd", ".sh", ".apk",
+    ".appimage"
+    ],
+
+    "Codigo_fuente": [".c", ".cpp", ".h",
+        ".hpp", ".py", ".java",
+        ".js", ".ts", ".html",
+        ".css", ".php", ".go",
+        ".rs"
+    ],
+
+    "Bases_de_datos": [".db", ".sqlite", ".sqlite3",
+        ".mdb", ".accdb"
+    ],
+
+    "Presentaciones": [".ppt", ".pptx", ".odp"
+    ],
+
+    "Comprimidos": [".zip", ".rar", ".7z",
+        ".tar", ".gz", ".bz2",
+        ".xz"
+    ],
 }
 
 def obtener_categoria(archivo):
@@ -43,4 +87,9 @@ def ordenar(ruta):
             shutil.move(elemento, destino)
 
 
-ordenar(Path("prueba"))
+parser = argparse.ArgumentParser(description="Ordena los archivos de una carpeta por categoría")
+parser.add_argument("carpeta")
+args = parser.parse_args()
+
+ruta = Path(args.carpeta)
+ordenar(ruta)
