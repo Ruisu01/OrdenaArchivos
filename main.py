@@ -92,4 +92,8 @@ parser.add_argument("carpeta")
 args = parser.parse_args()
 
 ruta = Path(args.carpeta)
+
+if not ruta.is_dir():
+    parser.error(f"'{ruta}' no es una carpeta existente")
+
 ordenar(ruta)
