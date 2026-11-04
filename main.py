@@ -78,17 +78,21 @@ def edicion_nombre(carpeta, nombre):
 
     return destino
 
-def ordenar(ruta):
-    crear_carpetas(ruta)
+def ordenar(ruta, simular):
+    if not simular:
+        crear_carpetas(ruta)
     for elemento in ruta.iterdir():
         if elemento.is_file():
             categoria = obtener_categoria(elemento)
             destino = edicion_nombre(ruta / categoria, elemento.name)
-            shutil.move(elemento, destino)
-
+            if simular:
+                print(f"[SIMULACIÓN] {elemento.name} -> {categoria}")
+            else:
+                shutil.move(elemento, destino)
 
 parser = argparse.ArgumentParser(description="Ordena los archivos de una carpeta por categoría")
 parser.add_argument("carpeta")
+parser.add_argument("--simular", action="store_true")
 args = parser.parse_args()
 
 ruta = Path(args.carpeta)
@@ -96,4 +100,4 @@ ruta = Path(args.carpeta)
 if not ruta.is_dir():
     parser.error(f"'{ruta}' no es una carpeta existente")
 
-ordenar(ruta)
+ordenar(ruta, args.simular)
