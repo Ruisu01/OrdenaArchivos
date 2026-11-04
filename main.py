@@ -89,6 +89,8 @@ def ordenar(ruta, simular):
                 print(f"[SIMULACIÓN] {elemento.name} -> {categoria}")
             else:
                 shutil.move(elemento, destino)
+                print(f"{elemento.name} --> {destino.name}")
+
 
 parser = argparse.ArgumentParser(description="Ordena los archivos de una carpeta por categoría")
 parser.add_argument("carpeta")
