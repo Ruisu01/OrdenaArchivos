@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import argparse
 from pathlib import Path
 import shutil
@@ -89,7 +90,7 @@ def ordenar(ruta, simular):
                 print(f"[SIMULACIÓN] {elemento.name} -> {categoria}")
             else:
                 shutil.move(elemento, destino)
-                print(f"{elemento.name} --> {destino.name}")
+                print(f"{elemento.name} --> {categoria}/{destino.name}")
 
 
 parser = argparse.ArgumentParser(description="Ordena los archivos de una carpeta por categoría")
